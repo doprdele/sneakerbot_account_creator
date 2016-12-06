@@ -35,7 +35,9 @@ def create_record(guest, sitetype, password, email, size, links, keywords, notif
     __keywords__ = [] if keywords == None else keywords
     __password__ = password if password else ''
 
-    return { 'EmailAddress': email,
+    return {
+            u"\u0018": False,
+            'EmailAddress': email,
             'Password': __password__,
             'Size': [size],
             'Links': __links__,
@@ -55,6 +57,7 @@ def create_record(guest, sitetype, password, email, size, links, keywords, notif
                 },
             'OnlyNewSupremeProducts': only_new,
             'CheckoutDelay': checkoutdelay,
+            'Quantity': 1
             }
 
 parser = ArgumentParser(
@@ -148,6 +151,20 @@ elif args.sitetype.lower() == "barneys":
   sitetype = 13
 elif args.sitetype.lower() == "kithnyc":
   sitetype = 30
+elif args.sitetype.lower() == "bodega":
+  sitetype = 35
+elif args.sitetype.lower() == "yeezysupply":
+  sitetype = 34
+elif args.sitetype.lower() == "size":
+  sitetype = 46
+elif args.sitetype.lower() == "footlocker":
+  sitetype = 1
+elif args.sitetype.lower() == "eastbay":
+  sitetype = 0
+elif args.sitetype.lower() == "champs":
+  sitetype = 3
+elif args.sitetype.lower() == "footaction":
+  sitetype = 2
 else:
   print "Supported --sitetype arguments are Adidas,Supreme,Barneys,KithNYC"
   exit(1)
